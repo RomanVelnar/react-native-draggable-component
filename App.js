@@ -1,19 +1,18 @@
-import { Text, View } from "react-native";
-import { Draggable } from "./Components/draggable";
+import * as React from 'react'
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
+const Stack = createNativeStackNavigator()
 
 export default function App() {
   return (
-    <View
-      style={{
-        backgroundColor: "red",
-        height: "100%",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
-    >
-      <Draggable />
-      <Text style={{ color: "black" }}>Things to show</Text>
-    </View>
+    <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen 
+            name='home'
+            component={}
+          />
+        </Stack.Navigator>
+    </NavigationContainer>
   );
 }
