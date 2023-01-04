@@ -16,7 +16,7 @@ export function Background({ navigation }) {
       <Text style={{ color: "black" }}>Things to show</Text>
       <MapButton
         style={{ position: "absolute", left: 0, top: 0 }}
-        onPressHandler={() => navigation.navigate('drag')}
+        onPressHandler={() => navigation.navigate("drag")}
       />
     </View>
   );
