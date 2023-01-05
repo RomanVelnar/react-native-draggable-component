@@ -60,7 +60,7 @@ export function Draggable({}: IDraggableProps) {
     restDisplacementThreshold: 0.3,
   };
 
-  const DRAG_BUFFER = 40;
+  const DRAG_BUFFER = 20;
 
   const onGestureEvent = useAnimatedGestureHandler({
     // Set the context value to the sheet's current height value
@@ -140,9 +140,9 @@ export function Draggable({}: IDraggableProps) {
     <View style={styles.container}>
       <PanGestureHandler onGestureEvent={onGestureEvent}>
         <Animated.View style={[sheetHeightAnimatedStyle, styles.sheet]}>
-          <View style={styles.handleContainer}>
+          {/* <View style={styles.handleContainer}>
             <View style={styles.handle} />
-          </View>
+          </View> */}
           <Animated.View style={sheetContentAnimatedStyle}>
             {/* <Animated.View style={sheetNavigationAnimatedStyle}>
               <TouchableOpacity
