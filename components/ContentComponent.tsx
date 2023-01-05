@@ -5,9 +5,9 @@ interface Props {
   style?: ViewStyle;
 }
 
-export function ContentComponent({style}) {
+export function ContentComponent() {
   return (
-    <Animated.View style={[styles.container, style]}>
+    <Animated.View style={styles.container}>
       <Text>dafdfasfasf</Text>
       <Text>dafdfasfasf</Text>
       <Text>dafdfasfasf</Text>

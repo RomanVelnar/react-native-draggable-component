@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import React from "react";
 import { ContentComponent } from "./ContentComponent";
 import { Draggable } from "./Draggable";
@@ -8,7 +8,7 @@ export function Home() {
   return (
     <GestureHandlerRootView style={{flex: 1}}>
         <View style={{ flex: 1, backgroundColor: "gray" }}>
-            <Text>afdafdsaf</Text>
+            <TouchableOpacity onPress={() => console.log('dfadfaf')}><Text>dafdfasfasf</Text></TouchableOpacity>
             <Draggable>
             <ContentComponent style={{ height: 60, marginBottom: 10 }} />
             <View style={{ flexDirection: "row", marginBottom: 10 }}>

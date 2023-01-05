@@ -4,7 +4,6 @@ import {
   PanGestureHandler,
   TouchableOpacity,
   ScrollView,
-  GestureHandlerRootView,
 } from "react-native-gesture-handler";
 import Animated, {
   useAnimatedGestureHandler,
@@ -13,6 +12,7 @@ import Animated, {
   withSpring,
   WithSpringConfig,
 } from "react-native-reanimated";
+import { ContentComponent } from "./ContentComponent";
 
 interface IDraggableProps {
   minHeight?: number;
@@ -43,12 +43,12 @@ export function Draggable({}: IDraggableProps) {
 
   // Fixed values (for snap positions)
   const minHeight = 120;
-  const maxHeight = dimensions.screen.height;
+  const maxHeight = 500;
   const expandedHeight = dimensions.screen.height * 0.6;
 
   // Animated values
   const position = useSharedValue<SheetPositions>("minimised");
-  const sheetHeight = useSharedValue(-minHeight);
+  const sheetHeight = useSharedValue(-maxHeight);
   const navHeight = useSharedValue(0);
 
   const springConfig: WithSpringConfig = {
@@ -131,10 +131,10 @@ export function Draggable({}: IDraggableProps) {
     paddingHorizontal: 20,
   }));
 
-  const sheetNavigationAnimatedStyle = useAnimatedStyle(() => ({
-    height: navHeight.value,
-    overflow: "hidden",
-  }));
+  //   const sheetNavigationAnimatedStyle = useAnimatedStyle(() => ({
+  //     height: navHeight.value,
+  //     overflow: "hidden",
+  //   }));
 
   return (
     <View style={styles.container}>
@@ -144,7 +144,7 @@ export function Draggable({}: IDraggableProps) {
             <View style={styles.handle} />
           </View>
           <Animated.View style={sheetContentAnimatedStyle}>
-            <Animated.View style={sheetNavigationAnimatedStyle}>
+            {/* <Animated.View style={sheetNavigationAnimatedStyle}>
               <TouchableOpacity
                 style={styles.closeButton}
                 onPress={() => {
@@ -155,11 +155,20 @@ export function Draggable({}: IDraggableProps) {
               >
                 <Text>{`❌`}</Text>
               </TouchableOpacity>
-            </Animated.View>
+            </Animated.View> */}
             <SafeAreaView>
               <ScrollView>
-                <Text>blahdafdfa</Text>
+                <ContentComponent />
               </ScrollView>
+              <TouchableOpacity
+                style={styles.closeButton}
+                onPress={() => {
+                  position.value = "minimised";
+                  sheetHeight.value = withSpring(-minHeight, springConfig);
+                }}
+              >
+                <Text>Button</Text>
+              </TouchableOpacity>
             </SafeAreaView>
           </Animated.View>
         </Animated.View>
@@ -199,19 +208,20 @@ const styles = StyleSheet.create({
     paddingTop: 10,
   },
   // Add a small handle component to indicate the sheet can be dragged
-  handle: {
-    width: "15%",
-    height: 4,
-    borderRadius: 8,
-    backgroundColor: "#CCCCCC",
-  },
+//   handle: {
+//     width: "15%",
+//     height: 4,
+//     borderRadius: 8,
+//     backgroundColor: "#CCCCCC",
+//   },
   closeButton: {
-    width: NAV_HEIGHT,
-    height: NAV_HEIGHT,
+    width: 50,
+    height: 50,
     borderRadius: NAV_HEIGHT,
     alignItems: "center",
     justifyContent: "center",
     alignSelf: "flex-start",
     marginBottom: 10,
+    backgroundColor: "red",
   },
 });
