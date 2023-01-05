@@ -6,7 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 interface CustomFooterProps extends BottomSheetFooterProps {}
 
 
-export function Draggable({animatedFooterPosition}: CustomFooterProps) {
+export function Draggable() {
   const bottomSheetRef = useRef(null);
   const snapPoints = useMemo(() => ["70", "10%"], []);
   const handleSheetChanges = useCallback((index) => {
@@ -14,6 +14,7 @@ export function Draggable({animatedFooterPosition}: CustomFooterProps) {
   }, []);
   
   const { collapse, animatedIndex } = useBottomSheet();
+
   const handleButtonPress = useCallback(() => {
     if (animatedIndex.value === 0) {
       collapse();
@@ -31,7 +32,6 @@ export function Draggable({animatedFooterPosition}: CustomFooterProps) {
         // enableHandlePanningGesture={true}
         enableOverDrag={false}
       >
-        <View>
           <Text>Blablabalblab</Text>
           <Text>Blablabalblab</Text>
           <Text>Blablabalblab</Text>
@@ -46,7 +46,6 @@ export function Draggable({animatedFooterPosition}: CustomFooterProps) {
           >
             <Text>Map</Text>
           </TouchableOpacity>
-        </View>
       </BottomSheet>
     </View>
   );
