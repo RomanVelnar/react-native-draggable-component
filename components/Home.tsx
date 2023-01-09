@@ -13,19 +13,16 @@ import {
   PanGestureHandlerGestureEvent,
 } from "react-native-gesture-handler";
 
-import Reanimated, { EasingNode } from 'react-native-reanimated';
+import Reanimated, { EasingNode } from "react-native-reanimated";
 import { Card } from "./Card";
 import { Data } from "./data";
 
 const { width } = Dimensions.get("screen");
 
-export default function Home() {
-  const { getList } = Data()
+export function Home() {
+  const { getList } = Data();
   const { height } = useWindowDimensions();
   const translateY = useRef(new Reanimated.Value(0)).current;
-
-  const [event, setEvent] = useState([]);
-  const [loading, setLoading] = useState(false);
 
   // Animation logic
   const bringUpActionSheet = () => {
@@ -33,7 +30,7 @@ export default function Home() {
       toValue: 0,
       duration: 500,
       // useNativeDriver: true,
-      easing: EasingNode.inOut(EasingNode.ease)
+      easing: EasingNode.inOut(EasingNode.ease),
     }).start();
   };
   const closeDownBottomSheet = () => {
@@ -41,17 +38,17 @@ export default function Home() {
       toValue: 1,
       duration: 500,
       // useNativeDriver: true,
-      easing: EasingNode.inOut(EasingNode.ease)
+      easing: EasingNode.inOut(EasingNode.ease),
     }).start();
   };
-  
+
   const bottomSheetTop = translateY.interpolate({
     inputRange: [0, 1],
-    outputRange: [height * 0.7 - height / 2.4 + 50, height * 0.7]
+    outputRange: [height * 0.7 - height / 2.4 + 50, height * 0.7],
   });
   const animatedStyle = {
     top: bottomSheetTop,
-    bottom: 0
+    bottom: 0,
   };
 
   const gestureHandler = (e: PanGestureHandlerGestureEvent) => {
@@ -64,16 +61,16 @@ export default function Home() {
 
   return (
     <>
-      <View style={{flex: 1, backgroundColor: "gray"}}></View>
+      <View style={{ flex: 1, backgroundColor: "gray" }}></View>
       <PanGestureHandler onGestureEvent={gestureHandler}>
         <Reanimated.View
           style={[styles.container, { top: height * 0.7 }, animatedStyle]}
         >
-              <Text>I am scroll sheet</Text>
-              <FlatList 
-                  data={getList()}
-                  renderItem={({item}) => (<Card data={item} />)}
-              />
+          <Text>I am scroll sheet</Text>
+          <FlatList
+            data={getList()}
+            renderItem={({ item }) => <Card data={item} />}
+          />
         </Reanimated.View>
       </PanGestureHandler>
     </>

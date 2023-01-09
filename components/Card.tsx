@@ -9,6 +9,11 @@ export function Card({data}) {
       )}
       <Text>{data.name}</Text>
       <Text>{data.price}</Text>
+      <Text>{data.price}</Text>
+      <Text>{data.price}</Text>
+      <Text>{data.price}</Text>
+      <Text>{data.price}</Text>
+      <Text>{data.price}</Text>
     </View>
   );
 }
