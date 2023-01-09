@@ -5,21 +5,16 @@ import {
   View,
   Dimensions,
   useWindowDimensions,
-  SafeAreaView,
-  RefreshControl,
-  Animated,
-  Button,
   FlatList,
-  ScrollView
 } from "react-native";
 
 import {
   PanGestureHandler,
   PanGestureHandlerGestureEvent,
-  TouchableOpacity,
 } from "react-native-gesture-handler";
 
 import Reanimated, { EasingNode } from 'react-native-reanimated';
+import { Card } from "./Card";
 import { Data } from "./data";
 
 const { width } = Dimensions.get("screen");
@@ -74,9 +69,10 @@ export default function Home() {
         <Reanimated.View
           style={[styles.container, { top: height * 0.7 }, animatedStyle]}
         >
-              <Title>I am scroll sheet</Title>
+              <Text>I am scroll sheet</Text>
               <FlatList 
-                  
+                  data={getList()}
+                  renderItem={({item}) => (<Card data={item} />)}
               />
         </Reanimated.View>
       </PanGestureHandler>
@@ -106,53 +102,3 @@ const styles = StyleSheet.create({
     height: 800,
   },
 });
-
-const HeroFlatList = styled(FlatList).attrs({
-  contentContainerStyle: {
-  paddingBottom: 50
-  },
-  // height:510,
-  // flex:1
-})``; 
-
-
-
-const Title = styled.Text`
-  font-size: 16px;
-  font-weight: 700;
-  margin-bottom: 5px;
-`;
-
-const DescriptionText = styled(Title)`
-  font-size: 14px;
-  opacity: 0.7;
-`;
-
-const DateText = styled(Title)`
-  font-size: 14px;
-  opacity: 0.8;
-  color: #0099cc;
-`;
-
-const EventImage = styled.Image`
-  width: 70px;
-  height: 70px;
-  border-radius: 70px;
-  margin-right: 20px;
-`;
-
-const DescriptionContainer = styled.View`
-  width: 200px;
-`;
-
-const EventContainer = styled(Animated.View)`
-  flex-direction: row;
-  padding: 20px;
-  margin-bottom: 10px;
-  border-radius: 20px;
-  background-color: rgba(255, 255, 255, 0.8);
-  shadow-color: #000;
-  shadow-opacity: 0.3;
-  shadow-radius: 20px;
-  shadow-offset: 0 10px;
-`;
